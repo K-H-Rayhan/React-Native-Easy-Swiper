@@ -54,9 +54,7 @@ export default function App() {
         dotBorderStyle={{
           borderColor: 'white',
         }}
-        dotStyle={{
-          backgroundColor: 'white',
-        }}
+        dotColor='white'
       >
         {images.map((image, index) => (
           <Image
