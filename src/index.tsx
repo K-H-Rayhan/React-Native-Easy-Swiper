@@ -15,7 +15,7 @@ type Props = {
   width?: number,
   containerStyle?: ViewStyle
   hideDot?: boolean,
-  dotType?: "dot" | "border",
+  dotType?: "dot" | "border" | "dashed",
   dotStyle?: ViewStyle,
   dotPosition?: "left" | "right" | "top" | "bottom",
   dotMargin?: number,
@@ -23,6 +23,7 @@ type Props = {
   dotBorderStyle?: ViewStyle,
   dotSpacing?: number,
   dotColor?: string,
+  activeDashSize?: number,
 }
 
 const Swiper = (
@@ -44,8 +45,9 @@ const Swiper = (
     dotBorderStyle,
     dotSpacing,
     dotColor,
+    activeDashSize,
   }: Props) => {
-  const [activeIndex, setActiveIndex] = React.useState(0)
+  // const [activeIndex, setActiveIndex] = React.useState(0)
   const contents: any = images ? images : React.Children.map(children, (child) => child)
   const scrollPos = React.useRef(new Animated.Value(0)).current
   const ITEM_WIDTH = fullScreen ? screenWidth : width && width > screenWidth ? screenWidth : width;
@@ -92,14 +94,16 @@ const Swiper = (
         showsVerticalScrollIndicator={false}
         snapToInterval={horizontal ? ITEM_WIDTH : ITEM_HEIGHT}
         decelerationRate="fast"
-        onScroll={({ nativeEvent: { contentOffset: { [axis]: pos }, contentSize: {
-          [horizontal ? "width" : "height"]: size
-        } } }) => {
-          if (activeDotColor && dotType == 'dot') {
-            let value = pos / (size / contents.length)
-            const floored = Math.round(value)
-            setActiveIndex(floored)
-          }
+        onScroll={({ nativeEvent: { contentOffset: { [axis]: pos },
+          // contentSize: {
+          //   [horizontal ? "width" : "height"]: size
+          // }
+        } }) => {
+          // if (activeDotColor && (dotType == 'dot')) {
+          //   let value = pos / (size / contents.length)
+          //   const floored = Math.round(value)
+          //   setActiveIndex(floored)
+          // }
           scrollPos.setValue(pos);
         }
         }
@@ -123,22 +127,45 @@ const Swiper = (
       {/* Dot Cutomization */}
       {!hideDot && <View style={{
         position: "absolute",
-        [DOTPOSITION == "left" || DOTPOSITION == "right" ? "top" : "left"]: ((DOTPOSITION == "left" || DOTPOSITION == "right" ? (ITEM_HEIGHT ?? screenHeight) : (ITEM_WIDTH ?? screenWidth)) - ((dataLength * DOTSIZE) + (dataLength - 1) * DOT_SPACING)) / 2,
+        [DOTPOSITION == "left" || DOTPOSITION == "right" ? "top" : "left"]: ((DOTPOSITION == "left" || DOTPOSITION == "right" ? (ITEM_HEIGHT ?? screenHeight) : (ITEM_WIDTH ?? screenWidth)) - (((dataLength * DOTSIZE) + (dataLength - 1) * DOT_SPACING) + (dotType == "dashed" ? activeDashSize ?? 32 : 0))) / 2,
         [DOTPOSITION]: dotMargin,
         display: "flex",
         flexDirection: DOTPOSITION == "left" || DOTPOSITION == "right" ? "column" : "row",
       }}>
         {
           contents?.map((_: string | React.ReactNode, index: number) => {
-            return <View key={index} style={{
-              width: DOTSIZE,
-              height: DOTSIZE,
+            const heightOrWidth = horizontal ? ITEM_WIDTH ?? screenWidth : ITEM_HEIGHT ?? screenHeight
+            const heightOrWidthSize = dotType == "dashed" ? (dotStyle?.height ? Number(dotStyle.height) : DOTSIZE) : DOTSIZE
+
+            const size = scrollPos.interpolate({
+              inputRange: [
+                heightOrWidth * (index - 1),
+                heightOrWidth * index,
+                heightOrWidth * (index + 1),
+              ],
+              outputRange: [heightOrWidthSize, activeDashSize ?? 32, heightOrWidthSize],
+              extrapolate: "clamp",
+            });
+
+            const color = scrollPos.interpolate({
+              inputRange: [
+                heightOrWidth * (index - 1),
+                heightOrWidth * index,
+                heightOrWidth * (index + 1),
+              ],
+              outputRange: [dotColor ?? "#1d1d1d", activeDotColor ?? "lightgray", dotColor ?? "#1d1d1d"],
+              extrapolate: "clamp",
+            });
+
+            return <Animated.View key={index} style={{
               borderRadius: DOTSIZE,
               [
                 DOTPOSITION == "left" || DOTPOSITION == "right" ? "marginBottom" : "marginRight"
               ]: DOT_SPACING,
               ...dotStyle,
-              backgroundColor: dotType == "dot" && activeIndex === index ? activeDotColor : dotColor,
+              height: (DOTPOSITION == "left" || DOTPOSITION == "right") && dotType == "dashed" ? size : DOTSIZE,
+              width: (DOTPOSITION == "top" || DOTPOSITION == "bottom") && dotType == "dashed" ? size : DOTSIZE,
+              backgroundColor: color,
             }} />
           })
         }
@@ -178,14 +205,15 @@ Swiper.defaultProps = {
   width: screenWidth,
   containerStyle: {},
   hideDot: false,
-  dotType: "border",
+  dotType: "dashed",
   dotStyle: {},
   dotPosition: null,
   dotMargin: 20,
-  activeDotColor: "gray",
+  activeDotColor: "black",
   dotBorderStyle: {},
   dotSpacing: 8,
-  dotColor: "#1d1d1d",
+  dotColor: "lightgray",
+  activeDashSize: 32,
 }
 
 
