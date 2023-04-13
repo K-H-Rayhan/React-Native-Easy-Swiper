@@ -22,6 +22,7 @@ type Props = {
   activeDotColor?: string,
   dotBorderStyle?: ViewStyle,
   dotSpacing?: number,
+  dotColor?: string,
 }
 
 const Swiper = (
@@ -42,6 +43,7 @@ const Swiper = (
     activeDotColor,
     dotBorderStyle,
     dotSpacing,
+    dotColor,
   }: Props) => {
   const [activeIndex, setActiveIndex] = React.useState(0)
   const contents: any = images ? images : React.Children.map(children, (child) => child)
@@ -132,11 +134,11 @@ const Swiper = (
               width: DOTSIZE,
               height: DOTSIZE,
               borderRadius: DOTSIZE,
-              backgroundColor: dotType == "dot" && activeIndex === index ? activeDotColor : "#333",
               [
                 DOTPOSITION == "left" || DOTPOSITION == "right" ? "marginBottom" : "marginRight"
               ]: DOT_SPACING,
-              ...dotStyle
+              ...dotStyle,
+              backgroundColor: dotType == "dot" && activeIndex === index ? activeDotColor : dotColor,
             }} />
           })
         }
@@ -146,7 +148,7 @@ const Swiper = (
             height: DOT_INDICATOR_SIZE,
             borderRadius: DOT_INDICATOR_SIZE,
             borderWidth: 1,
-            borderColor: "#333",
+            borderColor: "#1d1d1d",
             position: "absolute",
             top: -DOT_SPACING / 2,
             left: -DOT_SPACING / 2,
@@ -183,6 +185,7 @@ Swiper.defaultProps = {
   activeDotColor: "gray",
   dotBorderStyle: {},
   dotSpacing: 8,
+  dotColor: "#1d1d1d",
 }
 
 
