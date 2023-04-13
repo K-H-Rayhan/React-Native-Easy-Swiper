@@ -24,6 +24,7 @@ type Props = {
   dotSpacing?: number,
   dotColor?: string,
   activeDashSize?: number,
+  animations?: ("fade" | "scale")[],
 }
 
 const Swiper = (
@@ -46,6 +47,7 @@ const Swiper = (
     dotSpacing,
     dotColor,
     activeDashSize,
+    animations,
   }: Props) => {
   const contents: any = images ? images : React.Children.map(children, (child) => child)
   const scrollPos = React.useRef(new Animated.Value(0)).current
@@ -74,13 +76,21 @@ const Swiper = (
     }),
   }
 
+  const getInputRange = (index: number) => {
+    const heightOrWidth = horizontal ? ITEM_WIDTH ?? screenWidth : ITEM_HEIGHT ?? screenHeight
+    return [
+      heightOrWidth * (index - 1),
+      heightOrWidth * index,
+      heightOrWidth * (index + 1),
+    ]
+  }
+
 
   return <View>
     <View style={
       {
         width: ITEM_WIDTH,
         height: ITEM_HEIGHT,
-        overflow: "hidden",
         ...containerStyle
       }
     }>
@@ -99,19 +109,40 @@ const Swiper = (
         }
         }
         keyExtractor={(_, key) => key.toString()}
-        renderItem={({ item }) => <View style={{
-          width: ITEM_WIDTH,
-          height: ITEM_HEIGHT,
-        }}>
+        renderItem={({ item, index }) => {
+          const inputRange = getInputRange(index)
+          let opacity = null
+          let scale = null
+          if (animations?.includes("fade")) {
+            opacity = scrollPos.interpolate({
+              inputRange: inputRange,
+              outputRange: [0, 1, 0],
+            });
+          }
+          if (animations?.includes("scale")) {
+            scale = scrollPos.interpolate({
+              inputRange: inputRange,
+              outputRange: [0, 1, 0],
+            });
+          }
 
-          {images ? <Image source={{ uri: item }} style={{
-            width: "100%",
-            height: "100%",
-            resizeMode: "cover",
-            ...imagesStyles
-          }} /> : item}
+          return <Animated.View style={{
+            width: ITEM_WIDTH,
+            height: ITEM_HEIGHT,
+            ...(opacity ? { opacity } : {}),
+            ...(scale ? { transform: [{ scale }] } : {}),
+          }}
+          >
 
-        </View>}
+            {images ? <Image source={{ uri: item }} style={{
+              width: "100%",
+              height: "100%",
+              resizeMode: "cover",
+              ...imagesStyles
+            }} /> : item}
+
+          </Animated.View>
+        }}
       />
       {/* Main Slider Ends */}
 
@@ -125,25 +156,17 @@ const Swiper = (
       }}>
         {
           contents?.map((_: string | React.ReactNode, index: number) => {
-            const heightOrWidth = horizontal ? ITEM_WIDTH ?? screenWidth : ITEM_HEIGHT ?? screenHeight
             const heightOrWidthSize = dotType == "dashed" ? (dotStyle?.height ? Number(dotStyle.height) : DOTSIZE) : DOTSIZE
+            const inputRange = getInputRange(index)
 
             const size = scrollPos.interpolate({
-              inputRange: [
-                heightOrWidth * (index - 1),
-                heightOrWidth * index,
-                heightOrWidth * (index + 1),
-              ],
+              inputRange: inputRange,
               outputRange: [heightOrWidthSize, activeDashSize ?? 32, heightOrWidthSize],
               extrapolate: "clamp",
             });
 
             const color = scrollPos.interpolate({
-              inputRange: [
-                heightOrWidth * (index - 1),
-                heightOrWidth * index,
-                heightOrWidth * (index + 1),
-              ],
+              inputRange: inputRange,
               outputRange: [dotColor ?? "#1d1d1d", activeDotColor ?? "lightgray", dotColor ?? "#1d1d1d"],
               extrapolate: "clamp",
             });
@@ -181,7 +204,7 @@ const Swiper = (
       </View>}
       {/* Dot Cutomization Ends */}
     </View>
-  </View>
+  </View >
 }
 
 export default Swiper
@@ -205,6 +228,7 @@ Swiper.defaultProps = {
   dotSpacing: 8,
   dotColor: "lightgray",
   activeDashSize: 32,
+  animations: []
 }
 
 
