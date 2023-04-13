@@ -1,5 +1,5 @@
 {
-  "name": "react-native-image-swiper",
+  "name": "rn-easy-swiper",
   "version": "0.1.0",
   "description": "test",
   "main": "lib/commonjs/index.js",
@@ -40,13 +40,13 @@
     "ios",
     "android"
   ],
-  "repository": "https://github.com/K-H-Rayhan/react-native-image-swiper",
+  "repository": "https://github.com/K-H-Rayhan/rn-easy-swiper",
   "author": "Kamrul Hasan Rayhan <aahim7406@gmail.com> (https://github.com/K-H-Rayhan)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/K-H-Rayhan/react-native-image-swiper/issues"
+    "url": "https://github.com/K-H-Rayhan/rn-easy-swiper/issues"
   },
-  "homepage": "https://github.com/K-H-Rayhan/react-native-image-swiper#readme",
+  "homepage": "https://github.com/K-H-Rayhan/rn-easy-swiper#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
