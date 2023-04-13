@@ -15,7 +15,6 @@ yarn add react-native-easy-swiper
 
 ```js
 import * as React from 'react';
-import { View } from 'react-native';
 import Swiper from 'react-native-easy-swiper';
 
 const images = [
@@ -26,11 +25,10 @@ const images = [
 
 export default function App() {
   return (
-    <View>
-      <Swiper
-        images={images}
-      />
-    </View>
+    <Swiper
+      height={300}
+      images={images}
+    />
   );
 }
 ```
