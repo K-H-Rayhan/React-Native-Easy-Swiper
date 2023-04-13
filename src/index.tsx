@@ -44,6 +44,7 @@ const Swiper = (
     dotSpacing,
   }: Props) => {
   const [activeIndex, setActiveIndex] = React.useState(0)
+  const contents: any = images ? images : React.Children.map(children, (child) => child)
   const scrollPos = React.useRef(new Animated.Value(0)).current
   const ITEM_WIDTH = fullScreen ? screenWidth : width && width > screenWidth ? screenWidth : width;
   const ITEM_HEIGHT = fullScreen ? screenHeight : height && height > screenHeight ? screenHeight : height;
@@ -82,7 +83,7 @@ const Swiper = (
     }>
       {/* Main Slider */}
       <Animated.FlatList
-        data={images ? images : React.Children.map(children, (child) => child)}
+        data={contents}
         bounces={false}
         horizontal={horizontal}
         showsHorizontalScrollIndicator={false}
@@ -90,10 +91,10 @@ const Swiper = (
         snapToInterval={horizontal ? ITEM_WIDTH : ITEM_HEIGHT}
         decelerationRate="fast"
         onScroll={({ nativeEvent: { contentOffset: { [axis]: pos }, contentSize: {
-          [horizontal ? "height" : "width"]: size
+          [horizontal ? "width" : "height"]: size
         } } }) => {
           if (activeDotColor && dotType == 'dot') {
-            let value = pos / size
+            let value = pos / (size / contents.length)
             const floored = Math.round(value)
             setActiveIndex(floored)
           }
@@ -106,12 +107,12 @@ const Swiper = (
           height: ITEM_HEIGHT,
         }}>
 
-          {images ? <Image source={{ uri: item }} style={
-            {
-              width: "100%",
-              height: "100%",
-              ...imagesStyles
-            }} /> : item}
+          {images ? <Image source={{ uri: item }} style={{
+            width: "100%",
+            height: "100%",
+            resizeMode: "cover",
+            ...imagesStyles
+          }} /> : item}
 
         </View>}
       />
@@ -125,24 +126,8 @@ const Swiper = (
         display: "flex",
         flexDirection: DOTPOSITION == "left" || DOTPOSITION == "right" ? "column" : "row",
       }}>
-        {/* Dot For Custom Image Slider */}
         {
-          !images && React.Children.map(children, (_, index) => {
-            return <View key={index} style={{
-              width: DOTSIZE,
-              height: DOTSIZE,
-              borderRadius: DOTSIZE,
-              backgroundColor: dotType == "dot" && activeIndex === index ? activeDotColor : "#333",
-              [
-                DOTPOSITION == "left" || DOTPOSITION == "right" ? "marginBottom" : "marginRight"
-              ]: DOT_SPACING,
-              ...dotStyle
-            }} />
-          })
-        }
-        {/* Dot for simple image slider */}
-        {
-          images && images.map((_, index) => {
+          contents?.map((_: string | React.ReactNode, index: number) => {
             return <View key={index} style={{
               width: DOTSIZE,
               height: DOTSIZE,
@@ -171,8 +156,7 @@ const Swiper = (
             transform: [
               dotBorderPostion
             ],
-          }
-          ]
+          }]
         } />}
       </View>}
       {/* Dot Cutomization Ends */}
