@@ -1,11 +1,11 @@
-# rn-easy-swiper
+# react-native-easy-swiper
 
 Simple React Native Easy Swiper
 
 ## Installation
 
 ```sh
-npm install rn-easy-swiper
+npm install react-native-easy-swiper
 ```
 
 ## Usage

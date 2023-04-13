@@ -1,5 +1,5 @@
 {
-  "name": "rn-easy-swiper",
+  "name": "react-native-easy-swiper",
   "version": "0.1.4",
   "description": "test",
   "main": "lib/commonjs/index.js",
@@ -40,13 +40,13 @@
     "ios",
     "android"
   ],
-  "repository": "https://github.com/K-H-Rayhan/rn-easy-swiper",
+  "repository": "https://github.com/K-H-Rayhan/react-native-easy-swiper",
   "author": "Kamrul Hasan Rayhan <aahim7406@gmail.com> (https://github.com/K-H-Rayhan)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/K-H-Rayhan/rn-easy-swiper/issues"
+    "url": "https://github.com/K-H-Rayhan/react-native-easy-swiper/issues"
   },
-  "homepage": "https://github.com/K-H-Rayhan/rn-easy-swiper#readme",
+  "homepage": "https://github.com/K-H-Rayhan/react-native-easy-swiper#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
