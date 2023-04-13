@@ -47,7 +47,6 @@ const Swiper = (
     dotColor,
     activeDashSize,
   }: Props) => {
-  // const [activeIndex, setActiveIndex] = React.useState(0)
   const contents: any = images ? images : React.Children.map(children, (child) => child)
   const scrollPos = React.useRef(new Animated.Value(0)).current
   const ITEM_WIDTH = fullScreen ? screenWidth : width && width > screenWidth ? screenWidth : width;
@@ -95,15 +94,7 @@ const Swiper = (
         snapToInterval={horizontal ? ITEM_WIDTH : ITEM_HEIGHT}
         decelerationRate="fast"
         onScroll={({ nativeEvent: { contentOffset: { [axis]: pos },
-          // contentSize: {
-          //   [horizontal ? "width" : "height"]: size
-          // }
         } }) => {
-          // if (activeDotColor && (dotType == 'dot')) {
-          //   let value = pos / (size / contents.length)
-          //   const floored = Math.round(value)
-          //   setActiveIndex(floored)
-          // }
           scrollPos.setValue(pos);
         }
         }
