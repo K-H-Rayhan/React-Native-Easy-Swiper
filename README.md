@@ -11,11 +11,9 @@ npm install react-native-image-swiper
 ## Usage
 
 ```js
-import { multiply } from 'react-native-image-swiper';
 
 // ...
 
-const result = await multiply(3, 7);
 ```
 
 ## Contributing
