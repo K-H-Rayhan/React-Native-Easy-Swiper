@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "react-native-image-swiper": ["./src/index"]
+      "rn-easy-swiper": ["./src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,

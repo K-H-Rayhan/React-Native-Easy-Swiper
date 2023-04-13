@@ -1,10 +1,13 @@
 import * as React from 'react';
 import type { ViewStyle } from 'react-native';
-import { View, Dimensions, Animated } from 'react-native';
+import { ImageStyle } from 'react-native';
+import { View, Dimensions, Animated, Image } from 'react-native';
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get('screen');
 
 type Props = {
+  images?: any[],
+  imagesStyles?: ImageStyle,
   children?: React.ReactNode,
   horizontal?: boolean,
   fullScreen?: boolean,
@@ -12,20 +15,19 @@ type Props = {
   width?: number,
   containerStyle?: ViewStyle
   hideDot?: boolean,
+  dotType?: "dot" | "border",
   dotStyle?: ViewStyle,
   dotPosition?: "left" | "right" | "top" | "bottom",
-  dotColor?: string,
-  dotBorderColor?: string,
   dotMargin?: number,
   activeDotColor?: string,
   dotBorderStyle?: ViewStyle,
-  images?: string,
   dotSpacing?: number,
-  dotType?: "dot" | "border",
 }
 
 const Swiper = (
   {
+    images,
+    imagesStyles,
     children,
     horizontal,
     fullScreen,
@@ -33,21 +35,20 @@ const Swiper = (
     width,
     containerStyle,
     hideDot,
+    dotType,
     dotStyle,
+    dotPosition,
     dotMargin,
     activeDotColor,
     dotBorderStyle,
     dotSpacing,
-    dotPosition,
-    dotType
-
   }: Props) => {
   const [activeIndex, setActiveIndex] = React.useState(0)
   const scrollPos = React.useRef(new Animated.Value(0)).current
   const ITEM_WIDTH = fullScreen ? screenWidth : width && width > screenWidth ? screenWidth : width;
   const ITEM_HEIGHT = fullScreen ? screenHeight : height && height > screenHeight ? screenHeight : height;
   const axis = horizontal ? "x" : "y"
-  const dataLength = React.Children.count(children)
+  const dataLength = images ? images.length : React.Children.count(children)
   const DOTSIZE = dotStyle && Number(dotStyle.width) || 8;
   const DOT_SPACING = Number(dotSpacing) || 8
   const DOT_INDICATOR_SIZE = DOTSIZE + DOT_SPACING
@@ -79,8 +80,9 @@ const Swiper = (
         ...containerStyle
       }
     }>
+      {/* Main Slider */}
       <Animated.FlatList
-        data={React.Children.map(children, (child) => child)}
+        data={images ? images : React.Children.map(children, (child) => child)}
         bounces={false}
         horizontal={horizontal}
         showsHorizontalScrollIndicator={false}
@@ -102,8 +104,20 @@ const Swiper = (
         renderItem={({ item }) => <View style={{
           width: ITEM_WIDTH,
           height: ITEM_HEIGHT,
-        }}>{item}</View>}
+        }}>
+
+          {images ? <Image source={{ uri: item }} style={
+            {
+              width: "100%",
+              height: "100%",
+              ...imagesStyles
+            }} /> : item}
+
+        </View>}
       />
+      {/* Main Slider Ends */}
+
+      {/* Dot Cutomization */}
       {!hideDot && <View style={{
         position: "absolute",
         [DOTPOSITION == "left" || DOTPOSITION == "right" ? "top" : "left"]: ((DOTPOSITION == "left" || DOTPOSITION == "right" ? (ITEM_HEIGHT ?? screenHeight) : (ITEM_WIDTH ?? screenWidth)) - ((dataLength * DOTSIZE) + (dataLength - 1) * DOT_SPACING)) / 2,
@@ -111,8 +125,24 @@ const Swiper = (
         display: "flex",
         flexDirection: DOTPOSITION == "left" || DOTPOSITION == "right" ? "column" : "row",
       }}>
+        {/* Dot For Custom Image Slider */}
         {
-          React.Children.map(children, (_, index) => {
+          !images && React.Children.map(children, (_, index) => {
+            return <View key={index} style={{
+              width: DOTSIZE,
+              height: DOTSIZE,
+              borderRadius: DOTSIZE,
+              backgroundColor: dotType == "dot" && activeIndex === index ? activeDotColor : "#333",
+              [
+                DOTPOSITION == "left" || DOTPOSITION == "right" ? "marginBottom" : "marginRight"
+              ]: DOT_SPACING,
+              ...dotStyle
+            }} />
+          })
+        }
+        {/* Dot for simple image slider */}
+        {
+          images && images.map((_, index) => {
             return <View key={index} style={{
               width: DOTSIZE,
               height: DOTSIZE,
@@ -145,6 +175,7 @@ const Swiper = (
           ]
         } />}
       </View>}
+      {/* Dot Cutomization Ends */}
     </View>
   </View>
 }
@@ -152,19 +183,22 @@ const Swiper = (
 export default Swiper
 
 Swiper.defaultProps = {
+  images: null,
+  imagesStyles: {},
+  children: null,
+  horizontal: true,
   fullScreen: false,
   height: screenHeight,
   width: screenWidth,
+  containerStyle: {},
+  hideDot: false,
+  dotType: "border",
   dotStyle: {},
   dotPosition: null,
-  dotBorderStyle: {},
-  children: null,
-  hideDot: false,
-  horizontal: true,
-  containerStyle: {},
   dotMargin: 20,
   activeDotColor: "gray",
-  dotType: "border",
+  dotBorderStyle: {},
+  dotSpacing: 8,
 }
 
 
