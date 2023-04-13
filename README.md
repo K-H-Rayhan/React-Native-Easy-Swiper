@@ -29,6 +29,10 @@ export default function App() {
     <Swiper
       height={300}
       images={images}
+      dotStyle={{
+        width: 4,
+        height: 12
+      }}
     />
   );
 }
