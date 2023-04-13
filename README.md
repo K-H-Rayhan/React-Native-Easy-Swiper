@@ -13,7 +13,7 @@ yarn add react-native-easy-swiper
 ```
 ## Demo
 
-![ezgif com-video-to-gif](https://user-images.githubusercontent.com/83538046/231886851-1fbaed24-537c-4378-b9d3-621851c10054.gif)
+![react-native-easy-swiper](https://user-images.githubusercontent.com/83538046/231887647-699bf1ee-a3c8-4321-ba4a-6de8caacadbb.gif)
 
 ## Basic Usage
 
