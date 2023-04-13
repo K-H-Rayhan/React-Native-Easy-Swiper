@@ -1,8 +1,7 @@
 # React Native Easy Swiper 🚀
 
-React Native Easy Swiper - is a versatile library that simplifies the implementation of swipeable views in React Native. With minimal setup, you can easily create swipeable images and components.
-[Demo]([https://link-url-here.org](https://github.com/K-H-Rayhan/react-native-easy-swiper/blob/master/README.md#demo))
-
+React Native Easy Swiper - is a versatile library that simplifies the implementation of swipeable views in React Native. With minimal setup, you can easily create swipeable images and components. <br />
+[Demo]([https://www.somewebsite.com](https://github.com/K-H-Rayhan/react-native-easy-swiper/blob/master/README.md#demo))
 ## Installation
 
 ```sh
