@@ -1,6 +1,6 @@
 {
   "name": "react-native-easy-swiper",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "description": "A simple and customizable swiper component for React Native",
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
