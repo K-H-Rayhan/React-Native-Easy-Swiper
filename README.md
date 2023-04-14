@@ -22,6 +22,9 @@ yarn add react-native-easy-swiper
 ## Demo
 
 ![react-native-easy-swiper](https://user-images.githubusercontent.com/83538046/231887647-699bf1ee-a3c8-4321-ba4a-6de8caacadbb.gif)
+![react-native-easy-swiper](https://user-images.githubusercontent.com/83538046/231887647-699bf1ee-a3c8-4321-ba4a-6de8caacadbb.gif)
+![react-native-easy-swiper](https://user-images.githubusercontent.com/83538046/231887647-699bf1ee-a3c8-4321-ba4a-6de8caacadbb.gif)
+
 
 ## Basic Usage
 
