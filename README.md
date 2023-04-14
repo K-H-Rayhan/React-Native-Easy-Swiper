@@ -15,15 +15,15 @@ To install, you can use [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.
 ```sh
 npm install react-native-easy-swiper
 ```
-**or**
+or
 ```sh
 yarn add react-native-easy-swiper
 ```
 ## Demo
 
-![react-native-easy-swiper-demo-1](https://user-images.githubusercontent.com/83538046/231947848-63e7c521-1f9a-4c8e-8e6d-14482bb28282.gif)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-![react-native-easy-swiper-demo-2](https://user-images.githubusercontent.com/83538046/231947873-c5fa9b5f-0811-4aa0-a7ea-02f83fb02e37.gif)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-![react-native-easy-swiper-demo-3](https://user-images.githubusercontent.com/83538046/231947883-085822a7-19dc-4b61-a938-6ef8dcfd426f.gif)
+![React Native Easy Swiper Demo 1](https://user-images.githubusercontent.com/83538046/231977240-982a82db-e48c-4b3f-b450-3ba9339ddbce.gif)
+![React Native Easy Swiper Demo 2](https://user-images.githubusercontent.com/83538046/231977324-c5410461-282a-469b-99c3-59174a09fe6e.gif)
+![React Native Easy Swiper Demo 3](https://user-images.githubusercontent.com/83538046/231977338-432f9ef8-0cec-4efa-ac98-a821e93b45d3.gif)
 <br />
 **Try on snack**
 - [Demo 1](https://snack.expo.dev/@rayhan122/react-native-easy-swiper-demo-1)
