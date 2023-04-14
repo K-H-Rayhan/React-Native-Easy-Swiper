@@ -34,6 +34,7 @@ yarn add react-native-easy-swiper
 - **Direction: **Supports horizontal and vertical swiping direction
 - **Animations: **Supports fade and scale animation 
 - **Pagination: **Provides three types of animated pagination styles with lots of customization
+- **or**
 
 ## Basic Usage
 
