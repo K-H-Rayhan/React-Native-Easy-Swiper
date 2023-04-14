@@ -7,15 +7,9 @@
   "types": "lib/typescript/src/index.d.ts",
   "react-native": "src/index.tsx",
   "source": "src/index",
-  "directories": {
-    "__tests__": "./__tests__",
-    "src": "./src",
-    "lib": "./lib"
-  },
   "files": [
     "src",
     "lib",
-    "/__tests__",
     "!**/__tests__",
     "!**/__fixtures__",
     "!**/__mocks__",
@@ -96,13 +90,6 @@
     "modulePathIgnorePatterns": [
       "<rootDir>/example/node_modules",
       "<rootDir>/lib/"
-    ],
-    "testPathIgnorePatterns": [
-      "<rootDir>/__tests__/mocks/"
-    ],
-    "collectCoverage": true,
-    "collectCoverageFrom": [
-      "src/**/*.{js,ts,tsx}"
     ]
   },
   "commitlint": {
