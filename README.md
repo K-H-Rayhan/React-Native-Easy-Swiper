@@ -21,8 +21,8 @@ yarn add react-native-easy-swiper
 ```
 ## Demo
 
-![React Native Easy Swiper Demo 1](https://user-images.githubusercontent.com/83538046/231977240-982a82db-e48c-4b3f-b450-3ba9339ddbce.gif)
-![React Native Easy Swiper Demo 2](https://user-images.githubusercontent.com/83538046/231977324-c5410461-282a-469b-99c3-59174a09fe6e.gif)
+![React Native Easy Swiper Demo 1](https://user-images.githubusercontent.com/83538046/231977240-982a82db-e48c-4b3f-b450-3ba9339ddbce.gif)&npsp;&npsp;&npsp;&npsp;
+![React Native Easy Swiper Demo 2](https://user-images.githubusercontent.com/83538046/231977324-c5410461-282a-469b-99c3-59174a09fe6e.gif)&npsp;&npsp;&npsp;&npsp;
 ![React Native Easy Swiper Demo 3](https://user-images.githubusercontent.com/83538046/231977338-432f9ef8-0cec-4efa-ac98-a821e93b45d3.gif)
 <br />
 **Try on snack**
