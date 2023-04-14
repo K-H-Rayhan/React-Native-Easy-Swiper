@@ -9,7 +9,7 @@ React Native Easy Swiper - is a versatile library that simplifies the implementa
 - [Advance Usage](https://github.com/K-H-Rayhan/react-native-easy-swiper/blob/master/README.md#advance-usage)
 
 ## Installation
-To install, you can use npm or yarn:
+To install, you can use [npme](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/):
 ```sh
 npm install react-native-easy-swiper
 ```
