@@ -21,11 +21,11 @@ yarn add react-native-easy-swiper
 ```
 ## Demo
 
-![react-native-easy-swiper](https://user-images.githubusercontent.com/83538046/231887647-699bf1ee-a3c8-4321-ba4a-6de8caacadbb.gif)
-![react-native-easy-swiper](https://user-images.githubusercontent.com/83538046/231887647-699bf1ee-a3c8-4321-ba4a-6de8caacadbb.gif)
-![react-native-easy-swiper](https://user-images.githubusercontent.com/83538046/231887647-699bf1ee-a3c8-4321-ba4a-6de8caacadbb.gif)
+![react-native-easy-swiper-demo-1](https://user-images.githubusercontent.com/83538046/231947848-63e7c521-1f9a-4c8e-8e6d-14482bb28282.gif)
+![react-native-easy-swiper-demo-2](https://user-images.githubusercontent.com/83538046/231947873-c5fa9b5f-0811-4aa0-a7ea-02f83fb02e37.gif)
+![react-native-easy-swiper-demo-3](https://user-images.githubusercontent.com/83538046/231947883-085822a7-19dc-4b61-a938-6ef8dcfd426f.gif)
 <br />
-***Try on snack***
+**Try on snack**
 - [Demo 1](https://snack.expo.dev/@rayhan122/react-native-easy-swiper-demo-1)
 - [Demo 2](https://snack.expo.dev/@rayhan122/react-native-easy-swiper-demo-2)
 - [Demo 3](https://snack.expo.dev/@rayhan122/react-native-easy-swiper-demo-3)
