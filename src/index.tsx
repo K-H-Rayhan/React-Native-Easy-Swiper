@@ -137,7 +137,7 @@ const Swiper = (
             {images ? <Image source={{ uri: item }} style={{
               width: "100%",
               height: "100%",
-              resizeMode: "cover",
+              resizeMode: "contain",
               ...imagesStyles
             }} /> : item}
 
