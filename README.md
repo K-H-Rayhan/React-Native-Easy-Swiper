@@ -8,7 +8,7 @@ React Native Easy Swiper - is a versatile library that simplifies the implementa
 - [Core Features](https://github.com/K-H-Rayhan/react-native-easy-swiper#core-features)
 - [Basic Usage](https://github.com/K-H-Rayhan/react-native-easy-swiper#basic-usage)
 - [Advance Usage](https://github.com/K-H-Rayhan/react-native-easy-swiper#advance-usage)
-- [Basic Usage](https://github.com/K-H-Rayhan/react-native-easy-swiper#basic-usage)
+- [Api Documentation](https://github.com/K-H-Rayhan/react-native-easy-swiper#api-documentation)
 
 ## Installation
 To install, you can use [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/):
@@ -31,9 +31,9 @@ yarn add react-native-easy-swiper
 - [Demo 3](https://snack.expo.dev/@rayhan122/react-native-easy-swiper-demo-3)
 
 ## Core Features
-- **Direction:** Supports horizontal and vertical swiping direction
-- **Animations:** Supports fade and scale animation 
-- **Pagination:** Provides three types of animated pagination styles with lots of customization
+- **Direction -** Supports horizontal and vertical swiping direction
+- **Animations -** Supports fade and scale animation 
+- **Pagination -** Provides three types of animated pagination styles with lots of customization
 
 ## Basic Usage
 
@@ -113,6 +113,8 @@ const styles = StyleSheet.create({
   },
 });
 ```
+
+## Api Documentation
 
 ## Contributing
 
